@@ -46,7 +46,3 @@ async fn main() {
 fn default_command() {
     println!("Running the default command from the top level");
 }
-
-fn basic_command() {
-    println!("Running the basic command from the top level");
-}

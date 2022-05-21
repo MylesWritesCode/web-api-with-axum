@@ -1,6 +1,9 @@
-use std::{net::{IpAddr, Ipv4Addr, SocketAddr}, str::FromStr};
+use std::{
+    net::{Ipv4Addr, SocketAddr},
+    str::FromStr,
+};
 
-use axum::Router;
+use axum::{routing::get, Router};
 use clap::{Args, Subcommand};
 
 #[derive(Args)]
@@ -32,20 +35,23 @@ fn default() {
 }
 
 async fn start_server(host: &Option<String>, port: &Option<u16>) {
-    println!("Starting server...");
-
     let host: Ipv4Addr = match host {
-        Some(v) => {
-            Ipv4Addr::from_str(v).unwrap_or(Ipv4Addr::LOCALHOST)
-        },
+        Some(v) => Ipv4Addr::from_str(v).unwrap_or(Ipv4Addr::LOCALHOST),
         None => Ipv4Addr::LOCALHOST,
     };
     let port = port.unwrap_or(3000);
 
-    let app = Router::new();
+    let app = Router::new().route("/", get(root));
+
     let addr = SocketAddr::from((host, port));
+    println!("Listening on {}", addr);
+
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
         .unwrap();
+}
+
+async fn root() -> &'static str {
+    "Hello, world!"
 }
