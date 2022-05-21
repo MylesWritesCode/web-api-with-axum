@@ -1,6 +1,7 @@
 use std::{
     net::{Ipv4Addr, SocketAddr},
     str::FromStr,
+    env
 };
 
 use axum::{routing::get, Router};
@@ -35,6 +36,7 @@ fn default() {
 }
 
 async fn start_server(host: &Option<String>, port: &Option<u16>) {
+
     let host: Ipv4Addr = match host {
         Some(v) => Ipv4Addr::from_str(v).unwrap_or(Ipv4Addr::LOCALHOST),
         None => Ipv4Addr::LOCALHOST,

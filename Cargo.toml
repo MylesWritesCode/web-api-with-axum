@@ -20,6 +20,7 @@ features = ["full"]
 # Recommended dependencies
 # general 
 config = { git = "https://github.com/mehcode/config-rs", branch = "master" }
+zenv = { git = "https://github.com/numToStr/zenv", branch = "master" }
 # serde = { git = "https://github.com/serde-rs/serde", branch = "master" }
 # reqwest = { git = "https://github.com/seanmonstar/reqwest", branch = "master" }
 # once_cell = { git = "https://github.com/matklad/once_cell", branch = "master" }

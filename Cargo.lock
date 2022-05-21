@@ -724,6 +724,7 @@ dependencies = [
  "clap",
  "config",
  "tokio",
+ "zenv",
 ]
 
 [[package]]
@@ -1122,3 +1123,8 @@ checksum = "56c1936c4cc7a1c9ab21a1ebb602eb942ba868cbd44a99cb7cdc5892335e1c85"
 dependencies = [
  "linked-hash-map",
 ]
+
+[[package]]
+name = "zenv"
+version = "0.8.0"
+source = "git+https://github.com/numToStr/zenv?branch=master#3997807dc5e593c6ea9f18fabfc3117fca2a8415"
