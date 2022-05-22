@@ -10,7 +10,9 @@ use commands::server::*;
 mod settings;
 use settings::Settings;
 
-#[derive(Parser)]
+mod http;
+
+#[derive(clap::Parser)]
 #[clap(name = "Starter kit")]
 #[clap(author = "Myles <myles@themapletree.io>")]
 #[clap(version = "0.1.0")]
@@ -43,7 +45,7 @@ async fn main() {
             Commands::Server(args) => server_command(args).await,
         },
         None => default_command(),
-    }
+    };
 }
 
 fn default_command() {

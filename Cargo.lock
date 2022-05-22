@@ -14,6 +14,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "anyhow"
+version = "1.0.57"
+source = "git+https://github.com/dtolnay/anyhow?branch=master#302acadce05392af2fef565f8413fde3c3f3c76e"
+
+[[package]]
 name = "async-trait"
 version = "0.1.53"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -61,7 +66,7 @@ dependencies = [
  "percent-encoding",
  "pin-project-lite",
  "serde",
- "serde_json",
+ "serde_json 1.0.81 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_urlencoded",
  "sync_wrapper",
  "tokio",
@@ -82,6 +87,18 @@ dependencies = [
  "http",
  "http-body",
  "mime",
+]
+
+[[package]]
+name = "axum-macros"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cae774e664fd50bf80c9a7132d64ff70be3232a192ff4ba5619c3f72b9b4711f"
+dependencies = [
+ "heck",
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
@@ -190,7 +207,7 @@ dependencies = [
  "ron",
  "rust-ini",
  "serde",
- "serde_json",
+ "serde_json 1.0.81 (registry+https://github.com/rust-lang/crates.io-index)",
  "toml",
  "yaml-rust",
 ]
@@ -720,9 +737,13 @@ dependencies = [
 name = "rust-cli-starter"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "axum",
+ "axum-macros",
  "clap",
  "config",
+ "serde",
+ "serde_json 1.0.81 (git+https://github.com/serde-rs/json?branch=master)",
  "tokio",
  "zenv",
 ]
@@ -774,6 +795,16 @@ name = "serde_json"
 version = "1.0.81"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9b7ce2b32a1aed03c558dc61a5cd328f15aff2dbc17daad8fb8af04d2100e15c"
+dependencies = [
+ "itoa",
+ "ryu",
+ "serde",
+]
+
+[[package]]
+name = "serde_json"
+version = "1.0.81"
+source = "git+https://github.com/serde-rs/json?branch=master#f901012df66811354cb1d490ad59480d8fdf77b5"
 dependencies = [
  "itoa",
  "ryu",

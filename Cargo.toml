@@ -16,18 +16,28 @@ version = "1.18.2"
 # branch = "master"
 features = ["full"]
 
+[dependencies.serde]
+version = "1.0.137"
+# git = "https://github.com/serde-rs/serde"
+# branch = "master"
+features = ["derive"]
+
+[dependencies.serde_json]
+git = "https://github.com/serde-rs/json"
+branch = "master"
+
 [dependencies]
 # Recommended dependencies
 # general 
 config = { git = "https://github.com/mehcode/config-rs", branch = "master" }
 zenv = { git = "https://github.com/numToStr/zenv", branch = "master" }
-# serde = { git = "https://github.com/serde-rs/serde", branch = "master" }
 # reqwest = { git = "https://github.com/seanmonstar/reqwest", branch = "master" }
 # once_cell = { git = "https://github.com/matklad/once_cell", branch = "master" }
 axum = { git = "https://github.com/tokio-rs/axum", branch = "main" }
+axum-macros = "0.2.2"
 
 # error handling
-# anyhow = { git = "https://github.com/dtolnay/anyhow", branch = "master" }
+anyhow = { git = "https://github.com/dtolnay/anyhow", branch = "master" }
 # thiserror = { git = "https://github.com/dtolnay/thiserror", branch = "master" }
 # fs_err = { git = "https://github.com/andrewhickman/fs-err", branch = "master", package = "fs-err" }
 
