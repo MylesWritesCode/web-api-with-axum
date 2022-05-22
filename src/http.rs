@@ -1,11 +1,12 @@
-use axum::{routing::get, Json, Router};
-use serde::Serialize;
 use std::{
     net::{Ipv4Addr, SocketAddr},
     str::FromStr,
 };
+use axum::{routing::get, Json, Router};
+use serde::Serialize;
 
 mod users;
+mod webhooks;
 
 pub async fn start_server(host: &Option<String>, port: &Option<u16>) {
     let host: Ipv4Addr = match host {
@@ -17,7 +18,8 @@ pub async fn start_server(host: &Option<String>, port: &Option<u16>) {
     let app = Router::new()
         .route("/", get(root))
         .route("/diagnostics", get(diagnostics))
-        .merge(users::router());
+        .merge(users::router())
+        .merge(webhooks::router());
 
     let addr = SocketAddr::from((host, port));
     println!("Listening on {}", addr);
@@ -29,7 +31,7 @@ pub async fn start_server(host: &Option<String>, port: &Option<u16>) {
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct MessageResponse {
+pub struct MessageResponse {
     message: String,
 }
 
