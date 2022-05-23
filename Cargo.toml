@@ -12,19 +12,25 @@ features = ["derive"]
 
 [dependencies.tokio]
 version = "1.18.2"
+features = ["full"]
 # git = "https://github.com/tokio-rs/tokio"
 # branch = "master"
-features = ["full"]
 
 [dependencies.serde]
 version = "1.0.137"
+features = ["derive"]
 # git = "https://github.com/serde-rs/serde"
 # branch = "master"
-features = ["derive"]
+# tag = "v1.0.137"
 
 [dependencies.serde_json]
 git = "https://github.com/serde-rs/json"
 branch = "master"
+
+[dependencies.sea-orm]
+version = "0.8.0"
+# git = "https://github.com/SeaQL/sea-orm"
+# branch = "master"
 
 [dependencies]
 # Recommended dependencies

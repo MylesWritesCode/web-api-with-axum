@@ -29,7 +29,6 @@ enum Commands {
 
 #[tokio::main]
 async fn main() {
-    // dotenv::dotenv().ok();
     zenv::Zenv::new(".env", false).configure().ok();
 
     let cli = Cli::parse();
