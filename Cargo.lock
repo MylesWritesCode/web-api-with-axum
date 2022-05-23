@@ -318,6 +318,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0688c2a7f92e427f44895cd63841bff7b29f8d7a1648b9e7e07a4a365b2e1257"
 
 [[package]]
+name = "entity"
+version = "0.1.0"
+dependencies = [
+ "sea-orm",
+ "serde",
+]
+
+[[package]]
 name = "fake-simd"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -650,6 +658,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
 
 [[package]]
+name = "migration"
+version = "0.1.0"
+dependencies = [
+ "entity",
+ "sea-orm",
+]
+
+[[package]]
 name = "mime"
 version = "0.3.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -940,22 +956,6 @@ dependencies = [
  "base64",
  "bitflags",
  "serde",
-]
-
-[[package]]
-name = "rust-cli-starter"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "axum",
- "axum-macros",
- "clap",
- "config",
- "sea-orm",
- "serde",
- "serde_json 1.0.81 (git+https://github.com/serde-rs/json?branch=master)",
- "tokio",
- "zenv",
 ]
 
 [[package]]
@@ -1698,6 +1698,24 @@ name = "wasm-bindgen-shared"
 version = "0.2.80"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d554b7f530dee5964d9a9468d95c1f8b8acae4f282807e7d27d4b03099a46744"
+
+[[package]]
+name = "web-api-with-axum"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "axum",
+ "axum-macros",
+ "clap",
+ "config",
+ "entity",
+ "migration",
+ "sea-orm",
+ "serde",
+ "serde_json 1.0.81 (git+https://github.com/serde-rs/json?branch=master)",
+ "tokio",
+ "zenv",
+]
 
 [[package]]
 name = "winapi"

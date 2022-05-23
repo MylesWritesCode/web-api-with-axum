@@ -1,9 +1,36 @@
 [package]
-name = "rust-cli-starter"
+name = "web-api-with-axum"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+members = [".", "entity", "migration"]
+
+[dependencies]
+# Recommended dependencies
+# general 
+config = { git = "https://github.com/mehcode/config-rs", branch = "master" }
+zenv = { git = "https://github.com/numToStr/zenv", branch = "master" }
+# reqwest = { git = "https://github.com/seanmonstar/reqwest", branch = "master" }
+# once_cell = { git = "https://github.com/matklad/once_cell", branch = "master" }
+axum = { git = "https://github.com/tokio-rs/axum", branch = "main" }
+axum-macros = "0.2.2"
+
+# error handling
+anyhow = { git = "https://github.com/dtolnay/anyhow", branch = "master" }
+# thiserror = { git = "https://github.com/dtolnay/thiserror", branch = "master" }
+# fs_err = { git = "https://github.com/andrewhickman/fs-err", branch = "master", package = "fs-err" }
+
+# diagnostics and testing
+# tracing = { git = "https://github.com/tokio-rs/tracing", branch = "master" }
+# insta = { git = "https://github.com/mitsuhiko/insta", branch = "master" }
+# fake = { git = "https://github.com/cksac/fake-rs", branch = "master" }
+# wiremock = { git = "https://github.com/LukeMathWalker/wiremock-rs", branch = "main" }
+
+# user-written
+entity = { path = "entity" }
+migration = { path = "migration" }
 
 [dependencies.clap]
 git = "https://github.com/clap-rs/clap"
@@ -31,24 +58,3 @@ branch = "master"
 version = "0.8.0"
 # git = "https://github.com/SeaQL/sea-orm"
 # branch = "master"
-
-[dependencies]
-# Recommended dependencies
-# general 
-config = { git = "https://github.com/mehcode/config-rs", branch = "master" }
-zenv = { git = "https://github.com/numToStr/zenv", branch = "master" }
-# reqwest = { git = "https://github.com/seanmonstar/reqwest", branch = "master" }
-# once_cell = { git = "https://github.com/matklad/once_cell", branch = "master" }
-axum = { git = "https://github.com/tokio-rs/axum", branch = "main" }
-axum-macros = "0.2.2"
-
-# error handling
-anyhow = { git = "https://github.com/dtolnay/anyhow", branch = "master" }
-# thiserror = { git = "https://github.com/dtolnay/thiserror", branch = "master" }
-# fs_err = { git = "https://github.com/andrewhickman/fs-err", branch = "master", package = "fs-err" }
-
-# diagnostics and testing
-# tracing = { git = "https://github.com/tokio-rs/tracing", branch = "master" }
-# insta = { git = "https://github.com/mitsuhiko/insta", branch = "master" }
-# fake = { git = "https://github.com/cksac/fake-rs", branch = "master" }
-# wiremock = { git = "https://github.com/LukeMathWalker/wiremock-rs", branch = "main" }
