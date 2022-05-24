@@ -111,18 +111,12 @@ installation steps below.
    cargo install sea-orm-cli
    ```
 
-3. `// @todo` 
+3. Run migration
 
-### Simpler, since you're here
+   ```
+   sea migrate up
+   ```
 
-> _alternatively, the "I have a Github account" way_
-
-1. [Github docs][github-template-docs] telling you to click the button above,
-   labeled "Use this template".
-2. ???
-3. Profit by hacking away after you clone your new repo.
-
-[github-template-docs]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

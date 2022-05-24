@@ -2,7 +2,9 @@
  * This is the main driver code for the starter.
  * Run with `cargo run` or `<project_name>` to see the auto-generated help text.
  */
+use std::env;
 use clap::{Parser, Subcommand};
+use migration::{Migrator, MigratorTrait};
 
 mod commands;
 use commands::server::*;
@@ -30,6 +32,32 @@ enum Commands {
 #[tokio::main]
 async fn main() {
     zenv::Zenv::new(".env", false).configure().ok();
+
+    for (key, value) in env::vars() {
+        println!("{}={}", key, value);
+    }
+
+    // Run migrations
+    let connection = sea_orm::Database::connect(format!(
+        "postgres://{}:{}@{}:{}/{}",
+        env::var("DB_USER").expect("DB_USER not set"),
+        env::var("DB_PASS").expect("DB_USER not set"),
+        env::var("DB_HOST").expect("DB_USER not set"),
+        env::var("DB_PORT").expect("DB_USER not set"),
+        env::var("DB_NAME").expect("DB_USER not set")
+    ))
+    .await;
+
+    match connection {
+        Ok(c) => match Migrator::up(&c, None).await {
+            Ok(_) => println!("Migrations ran successfully"),
+            Err(e) => println!("Migrations failed: {}", e),
+        },
+        Err(e) => {
+            println!("Error: {}", e);
+            std::process::exit(1);
+        }
+    }
 
     let cli = Cli::parse();
     let settings = Settings::new();
