@@ -78,7 +78,9 @@ the meantime, feel free to use this as-is.
 ### Built With
 
 - [Clap](https://github.com/clap-rs/clap)
-- [SeaORM](https://www.sea-ql.org/SeaORM)
+- [Axum](https://github.com/tokio-rs/axum) (web server)
+- [Postgres](https://www.postgresql.org/) (DB)
+- [SeaORM](https://www.sea-ql.org/SeaORM) (ORM)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -86,18 +88,14 @@ the meantime, feel free to use this as-is.
 
 ## Getting Started
 
-Using this template is pretty easy - just take a look at the prerequisites and
-installation steps below.
 
 ### Prerequisites
 
 - [Rust](https://rust-lang.org)
+- [Docker](https://www.docker.com/get-started/) (CLI for image)
+- [SeaORM](https://github.com/SeaQL/sea-orm) (CLI for migrations)
 
 ### Installation
-
-### Most brute-force way to use this template
-
-> _This'll get you up and running fairly quickly_
 
 1. Clone the repo
 
@@ -111,12 +109,17 @@ installation steps below.
    cargo install sea-orm-cli
    ```
 
-3. Run migration
+3. Run `docker`. This will create the primary db.
 
    ```
-   sea migrate up
+   docker compose up -d
    ```
 
+4. Run initial server start
+
+   ```
+   cargo run --
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

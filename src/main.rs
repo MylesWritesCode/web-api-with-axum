@@ -1,10 +1,10 @@
+use clap::{Parser, Subcommand};
+use migration::{Migrator, MigratorTrait};
 /**
  * This is the main driver code for the starter.
  * Run with `cargo run` or `<project_name>` to see the auto-generated help text.
  */
 use std::env;
-use clap::{Parser, Subcommand};
-use migration::{Migrator, MigratorTrait};
 
 mod commands;
 use commands::server::*;
@@ -33,18 +33,14 @@ enum Commands {
 async fn main() {
     zenv::Zenv::new(".env", false).configure().ok();
 
-    for (key, value) in env::vars() {
-        println!("{}={}", key, value);
-    }
-
     // Run migrations
     let connection = sea_orm::Database::connect(format!(
         "postgres://{}:{}@{}:{}/{}",
         env::var("DB_USER").expect("DB_USER not set"),
-        env::var("DB_PASS").expect("DB_USER not set"),
-        env::var("DB_HOST").expect("DB_USER not set"),
-        env::var("DB_PORT").expect("DB_USER not set"),
-        env::var("DB_NAME").expect("DB_USER not set")
+        env::var("DB_PASS").expect("DB_PASS not set"),
+        env::var("DB_HOST").expect("DB_HOST not set"),
+        env::var("DB_PORT").expect("DB_PORT not set"),
+        env::var("DB_NAME").expect("DB_NAME not set"),
     ))
     .await;
 
