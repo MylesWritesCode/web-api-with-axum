@@ -78,6 +78,7 @@ the meantime, feel free to use this as-is.
 ### Built With
 
 - [Clap](https://github.com/clap-rs/clap)
+- [SeaORM](https://www.sea-ql.org/SeaORM)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -101,36 +102,16 @@ installation steps below.
 1. Clone the repo
 
    ```
-   # with https
-   git clone https://github.com/MylesWritesCode/rust-cli-starter.git
-
-   # or ssh
-   git clone git@github.com:MylesWritesCode/rust-cli-starter.git
+   git clone git@github.com:MylesWritesCode/web-api-with-axum.git
    ```
 
-2. Remove the `.git` directory
+2. Install SeaORM as a migration tool
 
    ```
-   # cd into the cloned directory
-   cd rust-cli-starter
-
-   # delete `.git`
-   rm -rf .git
+   cargo install sea-orm-cli
    ```
 
-3. Re-init git
-   ```
-   git init
-   ```
-4. Create a repo on your preferred git hosting site (e.g. GitHub)
-5. Add your new remote to your local git instance
-   ```
-   git remote add origin <your url>
-   git add .
-   git commit -m 'init'
-   git push origin <your branch>
-   ```
-6. Start hacking away
+3. `// @todo` 
 
 ### Simpler, since you're here
 
