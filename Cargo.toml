@@ -56,5 +56,6 @@ branch = "master"
 
 [dependencies.sea-orm]
 version = "0.8.0"
+features = []
 # git = "https://github.com/SeaQL/sea-orm"
 # branch = "master"
