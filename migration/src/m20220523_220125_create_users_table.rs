@@ -19,7 +19,13 @@ impl MigrationTrait for Migration {
                     .table(Entity)
                     .if_not_exists()
                     .col(ColumnDef::new(Column::Id).uuid().not_null().primary_key())
-                    .col(ColumnDef::new(Column::Name).text().not_null())
+                    .col(ColumnDef::new(Column::OrgId).uuid())
+                    .col(ColumnDef::new(Column::Name).string().not_null())
+                    .col(ColumnDef::new(Column::DisplayName).string().not_null())
+                    .col(ColumnDef::new(Column::Email).string().not_null())
+                    .col(ColumnDef::new(Column::Password).string().not_null())
+                    .col(ColumnDef::new(Column::CreatedAt).date_time().not_null())
+                    .col(ColumnDef::new(Column::ModifiedAt).date_time().not_null())
                     .to_owned(),
             )
             .await;

@@ -7,7 +7,7 @@ use migration::{Migrator, MigratorTrait};
 use std::env;
 
 mod commands;
-use commands::server::*;
+use commands::{migrate::*, server::*};
 
 mod settings;
 use settings::Settings;
@@ -27,6 +27,7 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     Server(ServerArguments),
+    Migrate(MigrateArguments),
 }
 
 #[tokio::main]
@@ -45,7 +46,7 @@ async fn main() {
     .await;
 
     match connection {
-        Ok(c) => match Migrator::up(&c, None).await {
+        Ok(ref c) => match Migrator::up(&c, None).await {
             Ok(_) => println!("Migrations ran successfully"),
             Err(e) => println!("Migrations failed: {}", e),
         },
@@ -66,6 +67,7 @@ async fn main() {
     match &cli.command {
         Some(command) => match command {
             Commands::Server(args) => server_command(args).await,
+            Commands::Migrate(args) => migrate_command(args, &connection.unwrap()).await,
         },
         None => default_command(),
     };
