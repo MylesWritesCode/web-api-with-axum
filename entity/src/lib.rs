@@ -1,4 +1,5 @@
 pub mod user;
+pub mod organization;
 
 #[cfg(test)]
 mod tests {
