@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   postgres:
-    image: postgres:13.4
+    image: postgres:alpine
     mem_limit: 512m
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
