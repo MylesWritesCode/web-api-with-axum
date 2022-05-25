@@ -1,15 +1,27 @@
 version: "3.9"
 services:
   postgres:
+    container_name: pg
     image: postgres:alpine
     mem_limit: 512m
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
       - ./sql:/web_api_with_axum/sql
     ports:
-      - $DB_PORT:5432
+      - $DB_PORT:$DB_PORT
     environment:
       - POSTGRES_USER=$DB_USER
       - POSTGRES_PASSWORD=$DB_PASS
       - POSTGRES_DB=$DB_NAME
     command: postgres -c listen_addresses='*'
+
+  redis:
+    container_name: rd
+    image: redis:alpine
+    mem_limit: 64m
+    ports:
+      - $RD_PORT:$RD_PORT
+    volumes:
+      - ./data/redis:/data
+    command: redis-server --appendonly yes
+      
