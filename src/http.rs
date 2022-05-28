@@ -6,6 +6,7 @@ use std::{
 };
 
 mod users;
+mod organizations;
 mod webhooks;
 
 pub type Response<T> = (StatusCode, Json<T>);
@@ -21,6 +22,7 @@ pub async fn start_server(host: &Option<String>, port: &Option<u16>) {
         .route("/", get(root))
         .route("/diagnostics", get(diagnostics))
         .merge(users::router())
+        .merge(organizations::router())
         .merge(webhooks::router());
 
     let addr = SocketAddr::from((host, port));
