@@ -1,4 +1,4 @@
-use sea_orm_migration::prelude::*;
+use sea_orm_migration::{prelude::*, sea_orm::prelude::Uuid};
 
 use entity::organization_users::*;
 
@@ -18,7 +18,7 @@ impl MigrationTrait for Migration {
                 Table::create()
                     .table(Entity)
                     .if_not_exists()
-                    .col(ColumnDef::new(Column::OrganizationId).uuid().not_null())
+                    .col(ColumnDef::new(Column::OrganizationId).uuid().not_null().default(Uuid::new_v4()))
                     .col(ColumnDef::new(Column::UserId).uuid().not_null())
                     .to_owned(),
             )

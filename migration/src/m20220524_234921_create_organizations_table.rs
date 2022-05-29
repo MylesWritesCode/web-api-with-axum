@@ -1,4 +1,7 @@
-use sea_orm_migration::prelude::*;
+use sea_orm_migration::{
+    prelude::*,
+    sea_orm::prelude::{DateTimeUtc, Uuid},
+};
 
 use entity::organization::*;
 
@@ -13,17 +16,34 @@ impl MigrationName for Migration {
 #[async_trait::async_trait]
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
+        let now = DateTimeUtc::from(std::time::SystemTime::now());
         return manager
             .create_table(
                 Table::create()
                     .table(Entity)
                     .if_not_exists()
-                    .col(ColumnDef::new(Column::Id).uuid().not_null().primary_key())
+                    .col(
+                        ColumnDef::new(Column::Id)
+                            .uuid()
+                            .not_null()
+                            .primary_key()
+                            .default(Uuid::new_v4()),
+                    )
                     .col(ColumnDef::new(Column::Name).string().not_null())
                     .col(ColumnDef::new(Column::DisplayName).string().not_null())
-                    .col(ColumnDef::new(Column::Password).string().not_null())
-                    .col(ColumnDef::new(Column::CreatedAt).date_time().not_null())
-                    .col(ColumnDef::new(Column::ModifiedAt).date_time().not_null())
+                    .col(ColumnDef::new(Column::Password).string())
+                    .col(
+                        ColumnDef::new(Column::CreatedAt)
+                            .date_time()
+                            .not_null()
+                            .default(now),
+                    )
+                    .col(
+                        ColumnDef::new(Column::ModifiedAt)
+                            .date_time()
+                            .not_null()
+                            .default(now),
+                    )
                     .to_owned(),
             )
             .await;
