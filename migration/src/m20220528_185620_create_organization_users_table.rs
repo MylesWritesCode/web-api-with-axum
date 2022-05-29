@@ -1,12 +1,12 @@
 use sea_orm_migration::prelude::*;
 
-use entity::user::*;
+use entity::organization_users::*;
 
 pub struct Migration;
 
 impl MigrationName for Migration {
     fn name(&self) -> &str {
-        "m20220523_220125_create_users_table"
+        "m20220528_185620_create_organization_users_table"
     }
 }
 
@@ -18,13 +18,8 @@ impl MigrationTrait for Migration {
                 Table::create()
                     .table(Entity)
                     .if_not_exists()
-                    .col(ColumnDef::new(Column::Id).uuid().not_null().primary_key())
-                    .col(ColumnDef::new(Column::Name).string().not_null())
-                    .col(ColumnDef::new(Column::DisplayName).string().not_null())
-                    .col(ColumnDef::new(Column::Email).string().not_null())
-                    .col(ColumnDef::new(Column::Password).string().not_null())
-                    .col(ColumnDef::new(Column::CreatedAt).date_time().not_null())
-                    .col(ColumnDef::new(Column::ModifiedAt).date_time().not_null())
+                    .col(ColumnDef::new(Column::OrganizationId).uuid().not_null())
+                    .col(ColumnDef::new(Column::UserId).uuid().not_null())
                     .to_owned(),
             )
             .await;

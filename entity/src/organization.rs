@@ -14,14 +14,19 @@ pub struct Model {
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, EnumIter, DeriveRelation)]
-pub enum Relation {
-    #[sea_orm(has_many = "super::user::Entity")]
-    User,
-}
+pub enum Relation {}
 
 impl Related<super::user::Entity> for Entity {
     fn to() -> RelationDef {
-        return Relation::User.def();
+        return super::organization_users::Relation::User.def();
+    }
+
+    fn via() -> Option<RelationDef> {
+        return Some(
+            super::organization_users::Relation::Organization
+                .def()
+                .rev(),
+        );
     }
 }
 
