@@ -15,7 +15,7 @@ zenv = { git = "https://github.com/numToStr/zenv", branch = "master" }
 # reqwest = { git = "https://github.com/seanmonstar/reqwest", branch = "master" }
 # once_cell = { git = "https://github.com/matklad/once_cell", branch = "master" }
 axum = { git = "https://github.com/tokio-rs/axum", branch = "main" }
-axum-macros = "0.2.2"
+axum-macros = "0"
 
 # error handling
 anyhow = { git = "https://github.com/dtolnay/anyhow", branch = "master" }
@@ -38,15 +38,15 @@ branch = "master"
 features = ["derive"]
 
 [dependencies.tokio]
-version = "1.18.2"
+version = "1"
 features = ["full"]
 # git = "https://github.com/tokio-rs/tokio"
 # branch = "master"
 
 [dependencies.serde]
-version = "1.0.137"
-features = ["derive"]
 # git = "https://github.com/serde-rs/serde"
+version = "1"
+features = ["derive"]
 # branch = "master"
 # tag = "v1.0.137"
 
@@ -55,7 +55,7 @@ git = "https://github.com/serde-rs/json"
 branch = "master"
 
 [dependencies.sea-orm]
-version = "0.8.0"
-features = ["runtime-tokio-native-tls", "sqlx-postgres"]
 # git = "https://github.com/SeaQL/sea-orm"
+version = "0"
+features = ["runtime-tokio-native-tls", "sqlx-postgres"]
 # branch = "master"
