@@ -5,8 +5,8 @@ use std::{
     str::FromStr,
 };
 
-mod users;
 mod organizations;
+mod users;
 mod webhooks;
 mod diagnostics;
 
