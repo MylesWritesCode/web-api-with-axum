@@ -8,6 +8,7 @@ use std::{
 mod users;
 mod organizations;
 mod webhooks;
+mod diagnostics;
 
 pub type Response<T> = (StatusCode, Json<T>);
 
@@ -20,7 +21,7 @@ pub async fn start_server(host: &Option<String>, port: &Option<u16>) {
 
     let app = Router::new()
         .route("/", get(root))
-        .route("/diagnostics", get(diagnostics))
+        .merge(diagnostics::router())
         .merge(users::router())
         .merge(organizations::router())
         .merge(webhooks::router());
@@ -52,13 +53,4 @@ async fn root() -> Json<MessageResponse> {
 struct DiagnosticsResponse {
     uptime: String,
     version: String,
-}
-
-async fn diagnostics() -> Json<DiagnosticsResponse> {
-    let res = Json(DiagnosticsResponse {
-        uptime: "2000".to_string(),
-        version: env!("CARGO_PKG_VERSION").to_string(),
-    });
-
-    return res;
 }
