@@ -14,7 +14,7 @@ config = { git = "https://github.com/mehcode/config-rs", branch = "master" }
 zenv = { git = "https://github.com/numToStr/zenv", branch = "master" }
 # reqwest = { git = "https://github.com/seanmonstar/reqwest", branch = "master" }
 # once_cell = { git = "https://github.com/matklad/once_cell", branch = "master" }
-axum = { git = "https://github.com/tokio-rs/axum", branch = "main" }
+axum = { git = "https://github.com/tokio-rs/axum", branch = "main", features = ["ws"] }
 axum-macros = "0"
 
 # error handling

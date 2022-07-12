@@ -5,10 +5,11 @@ use std::{
     str::FromStr,
 };
 
+mod diagnostics;
 mod organizations;
 mod users;
 mod webhooks;
-mod diagnostics;
+mod websocket;
 
 pub type Response<T> = (StatusCode, Json<T>);
 
@@ -22,6 +23,7 @@ pub async fn start_server(host: &Option<String>, port: &Option<u16>) {
     let app = Router::new()
         .route("/", get(root))
         .merge(diagnostics::router())
+        .merge(websocket::router())
         .merge(users::router())
         .merge(organizations::router())
         .merge(webhooks::router());
