@@ -8,27 +8,13 @@ edition = "2021"
 members = [".", "entity", "migration"]
 
 [dependencies]
-# Recommended dependencies
-# general 
-config = { git = "https://github.com/mehcode/config-rs", branch = "master" }
-zenv = { git = "https://github.com/numToStr/zenv", branch = "master" }
-# reqwest = { git = "https://github.com/seanmonstar/reqwest", branch = "master" }
-# once_cell = { git = "https://github.com/matklad/once_cell", branch = "master" }
-axum = { git = "https://github.com/tokio-rs/axum", branch = "main", features = ["ws"] }
+tokio = { version = "1", features = ["full"] }
+tower = { version = "0", features = ["util"] }
+futures = "0"
 axum-macros = "0"
-
-# error handling
+zenv = { git = "https://github.com/numToStr/zenv", branch = "master" }
 anyhow = { git = "https://github.com/dtolnay/anyhow", branch = "master" }
-# thiserror = { git = "https://github.com/dtolnay/thiserror", branch = "master" }
-# fs_err = { git = "https://github.com/andrewhickman/fs-err", branch = "master", package = "fs-err" }
 
-# diagnostics and testing
-# tracing = { git = "https://github.com/tokio-rs/tracing", branch = "master" }
-# insta = { git = "https://github.com/mitsuhiko/insta", branch = "master" }
-# fake = { git = "https://github.com/cksac/fake-rs", branch = "master" }
-# wiremock = { git = "https://github.com/LukeMathWalker/wiremock-rs", branch = "main" }
-
-# user-written
 entity = { path = "entity" }
 migration = { path = "migration" }
 
@@ -37,11 +23,10 @@ git = "https://github.com/clap-rs/clap"
 branch = "master"
 features = ["derive"]
 
-[dependencies.tokio]
-version = "1"
-features = ["full"]
-# git = "https://github.com/tokio-rs/tokio"
-# branch = "master"
+[dependencies.axum]
+git = "https://github.com/tokio-rs/axum"
+branch = "main"
+features = ["ws"]
 
 [dependencies.serde]
 # git = "https://github.com/serde-rs/serde"
